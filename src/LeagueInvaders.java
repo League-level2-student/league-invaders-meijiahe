@@ -12,6 +12,7 @@ public static void main(String[] args) {
 LeagueInvaders (){
 }
 void setup() {
+	frame.addKeyListener(gamepanel);
 	frame.add(gamepanel);
 	frame.setSize(WIDTH, HEIGHT);
 	frame.setVisible(true);
