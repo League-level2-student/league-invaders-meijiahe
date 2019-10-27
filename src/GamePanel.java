@@ -12,6 +12,7 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel 
 	 implements ActionListener, KeyListener{  
 Timer frameDraw;
+Rocketship object1 = new Rocketship (250,700,50,50);
 	final int MENU = 0;
     final int GAME = 1;
     final int END = 2;
@@ -51,6 +52,7 @@ Timer frameDraw;
 	 void drawGameState(Graphics g) {  
 		 g.setColor(Color.BLACK);
 		 g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+		 object1.draw(g);
 	 }
 	 void drawEndState(Graphics g)  {  
 		 g.setColor(Color.RED);
@@ -98,6 +100,9 @@ Timer frameDraw;
 		}   
 		if (e.getKeyCode()==KeyEvent.VK_UP) {
 		    System.out.println("UP");
+		    if (x>=250) {
+		    	Rocketship.right();
+		    }
 		}
 		if (e.getKeyCode()==KeyEvent.VK_DOWN) {
 		    System.out.println("DOWN");
@@ -108,6 +113,7 @@ Timer frameDraw;
 		if (e.getKeyCode()==KeyEvent.VK_LEFT) {
 		    System.out.println("LEFT");
 		}
+		
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
