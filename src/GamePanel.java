@@ -12,7 +12,7 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel 
 	 implements ActionListener, KeyListener{  
 Timer frameDraw;
-Rocketship object1 = new Rocketship (250,700,50,50);
+Rocketship rocketship = new Rocketship (250,700,50,50);
 	final int MENU = 0;
     final int GAME = 1;
     final int END = 2;
@@ -52,7 +52,7 @@ Rocketship object1 = new Rocketship (250,700,50,50);
 	 void drawGameState(Graphics g) {  
 		 g.setColor(Color.BLACK);
 		 g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
-		 object1.draw(g);
+		 rocketship.draw(g);
 	 }
 	 void drawEndState(Graphics g)  {  
 		 g.setColor(Color.RED);
@@ -100,18 +100,19 @@ Rocketship object1 = new Rocketship (250,700,50,50);
 		}   
 		if (e.getKeyCode()==KeyEvent.VK_UP) {
 		    System.out.println("UP");
-		    if (x>=250) {
-		    	Rocketship.right();
-		    }
+		 rocketship.up();
 		}
 		if (e.getKeyCode()==KeyEvent.VK_DOWN) {
 		    System.out.println("DOWN");
+		    rocketship.down();
 		}
 		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
 		    System.out.println("RIGHT");
+		    rocketship.right();
 		}
 		if (e.getKeyCode()==KeyEvent.VK_LEFT) {
 		    System.out.println("LEFT");
+		    rocketship.left();
 		}
 		
 	}

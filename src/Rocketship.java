@@ -11,15 +11,22 @@ void draw (Graphics g) {
      g.fillRect(x, y, width, height);
 }
 public void right() {
-    x+=speed;
+	if (x<LeagueInvaders.WIDTH) {
+		x+=speed;
+	}
 }
 public void left () {
+	if (x>0)
 	x-=speed;
 }
 public void up () {
-	y+=speed;
+	if (y<LeagueInvaders.HEIGHT) {
+	y-=speed;
+}
 }
 public void down () {
-	y-=speed;
+	if (y>0) {
+		y+=speed;
+	}
 }
 }
