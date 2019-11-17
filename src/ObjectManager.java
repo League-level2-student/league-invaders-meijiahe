@@ -1,11 +1,23 @@
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ObjectManager {
+import javax.imageio.ImageIO;
+
+public class ObjectManager implements ActionListener{
+	public static BufferedImage image;
+	public static boolean needImage = true;
+	public static boolean gotImage = false;	
 	Rocketship rocket;
   ObjectManager (Rocketship rocket){
 	  this.rocket=rocket;
+	  if (needImage) {
+		    loadImage ("space.png");
+		}
 }
   ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
   void addProjectile(Projectile projectile){
@@ -25,10 +37,16 @@ public class ObjectManager {
 		 }
   }
   void draw(Graphics g) {
+	  if (gotImage) {
+			g.drawImage(image, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
+		} else {
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+		}
 	  for (int i=0;i<aliens.size();i++) {
 		  aliens.get(i).draw(g);
 	  }
-	  
+	  rocket.draw(g);
 		  for (int i=0;i<projectiles.size();i++) {
 			  projectiles.get(i).draw(g);
 		  }
@@ -45,4 +63,20 @@ public class ObjectManager {
   }
 	  }
   }
+  void loadImage(String imageFile) {
+	    if (needImage) {
+	        try {
+	            image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
+		    gotImage = true;
+	        } catch (Exception e) {
+	            
+	        }
+	        needImage = false;
+	    }
+	}
+@Override
+public void actionPerformed(ActionEvent e) {
+	// TODO Auto-generated method stub
+	addAlien();
+}
 }

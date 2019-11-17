@@ -34,7 +34,7 @@ ObjectManager objectmanager = new ObjectManager(rocketship);
 	 void updateMenuState() {  
 	 }
 	 void updateGameState() {  
-		
+		objectmanager.update();
 	 }
 	 void updateEndState()  {  
 		 
@@ -53,7 +53,7 @@ ObjectManager objectmanager = new ObjectManager(rocketship);
 	 void drawGameState(Graphics g) {  
 		 g.setColor(Color.BLACK);
 		 g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
-		 rocketship.draw(g);
+		 objectmanager.draw(g);
 	 }
 	 void drawEndState(Graphics g)  {  
 		 g.setColor(Color.RED);
