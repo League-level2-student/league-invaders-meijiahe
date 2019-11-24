@@ -79,4 +79,9 @@ public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
 	addAlien();
 }
+void checkCollision () {
+	for (int i=0;i<aliens.size();i++) {
+		
+	}
+}
 }

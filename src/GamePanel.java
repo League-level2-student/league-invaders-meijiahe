@@ -12,6 +12,7 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel 
 	 implements ActionListener, KeyListener{  
 Timer frameDraw;
+Timer alienSpawn;
 Rocketship rocketship = new Rocketship (250,700,50,50);
 ObjectManager objectmanager = new ObjectManager(rocketship);
 	final int MENU = 0;
@@ -95,8 +96,15 @@ ObjectManager objectmanager = new ObjectManager(rocketship);
 		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
 		    if (currentState == END) {
 		        currentState = MENU;
-		    } else {
+		    }
+		    else {
 		        currentState++;
+		        if (currentState==GAME) {
+		        	startGame();
+		        }
+		        if (GAME==END) {
+		        	alienSpawn.stop();
+		        }
 		    }
 		}   
 		if (e.getKeyCode()==KeyEvent.VK_UP) {
@@ -115,14 +123,19 @@ ObjectManager objectmanager = new ObjectManager(rocketship);
 		    System.out.println("LEFT");
 		    rocketship.left();
 		}
-		
+		if (e.getKeyCode()==KeyEvent.VK_SPACE) {
+			objectmanager.addProjectile(rocketship.getProjectile());
+		}
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
-		
+		void startGame() {
+			alienSpawn = new Timer(1000 , objectmanager);
+		    alienSpawn.start();
+		}
 	}
 
 
