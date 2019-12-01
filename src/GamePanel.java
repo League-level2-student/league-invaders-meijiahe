@@ -36,6 +36,11 @@ ObjectManager objectmanager = new ObjectManager(rocketship);
 	 }
 	 void updateGameState() {  
 		objectmanager.update();
+		if (rocketship.isActive=true) {
+		}
+		else {
+			currentState = END;
+		}
 	 }
 	 void updateEndState()  {  
 		 
