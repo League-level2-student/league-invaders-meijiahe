@@ -13,6 +13,7 @@ public class ObjectManager implements ActionListener{
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
 	Rocketship rocket;
+	int score=0;
   ObjectManager (Rocketship rocket){
 	  this.rocket=rocket;
 	  if (needImage) {
@@ -77,6 +78,9 @@ public class ObjectManager implements ActionListener{
 	        needImage = false;
 	    }
 	}
+  public int getScore() {
+	  return score;
+  }
 @Override
 public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
@@ -87,6 +91,9 @@ void checkCollision () {
 		if (rocket.collisionBox.intersects(aliens.get(i).collisionBox)) {
 			rocket.isActive=false;
 			aliens.get(i).isActive=false;
+		}
+		if (projectiles.get(i).collisionBox.intersects(aliens.get(i).collisionBox)) {
+			score++;
 		}
 	}
 }

@@ -36,7 +36,7 @@ ObjectManager objectmanager = new ObjectManager(rocketship);
 	 }
 	 void updateGameState() {  
 		objectmanager.update();
-		if (rocketship.isActive=true) {
+		if (rocketship.isActive==true) { 
 		}
 		else {
 			currentState = END;
@@ -68,9 +68,10 @@ ObjectManager objectmanager = new ObjectManager(rocketship);
 		 g.setColor(Color.YELLOW);
 		 g.drawString("Game Over", 151, 100);
 		 g.setFont(smallTitleFont);
-		 g.drawString("You killed  enemies", 150, 400);
+		 g.drawString("You killed"+objectmanager.getScore()+" enemies", 150, 400);
 		 g.setFont(middleTitleFont);
 		 g.drawString("Press ENTER to start", 100, 600);
+		 
 	 }
 	 GamePanel(){
 		 Timer frameDraw = new Timer (1000/60, this);
@@ -101,6 +102,8 @@ ObjectManager objectmanager = new ObjectManager(rocketship);
 		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
 		    if (currentState == END) {
 		        currentState = MENU;
+		        rocketship=new Rocketship(250,700,50,50);
+		        objectmanager = new ObjectManager(rocketship);
 		    }
 		    else {
 		        currentState++;
@@ -111,6 +114,7 @@ ObjectManager objectmanager = new ObjectManager(rocketship);
 		        	alienSpawn.stop();
 		        }
 		    }
+		    
 		}   
 		if (e.getKeyCode()==KeyEvent.VK_UP) {
 		    System.out.println("UP");
@@ -131,6 +135,7 @@ ObjectManager objectmanager = new ObjectManager(rocketship);
 		if (e.getKeyCode()==KeyEvent.VK_SPACE) {
 			objectmanager.addProjectile(rocketship.getProjectile());
 		}
+		
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
