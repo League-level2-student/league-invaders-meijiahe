@@ -92,8 +92,11 @@ void checkCollision () {
 			rocket.isActive=false;
 			aliens.get(i).isActive=false;
 		}
-		if (projectiles.get(i).collisionBox.intersects(aliens.get(i).collisionBox)) {
+		for (int k=0;k<projectiles.size();k++) {
+		if (projectiles.get(k).collisionBox.intersects(aliens.get(i).collisionBox)) {
 			score++;
+			aliens.get(i).isActive=false;
+		}
 		}
 	}
 }
